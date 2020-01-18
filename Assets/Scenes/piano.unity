@@ -430,6 +430,21 @@ MonoBehaviour:
   - {fileID: 7606030420682392192}
   - {fileID: 7606030420071992556}
   - {fileID: 7606030418574066142}
+  currentKeyOrder:
+  - {fileID: 7606030419123747184}
+  - {fileID: 7606030420544485558}
+  - {fileID: 7606030419238721910}
+  - {fileID: 7606030420446592826}
+  - {fileID: 7606030419944095137}
+  - {fileID: 7606030419350703371}
+  - {fileID: 7606030419308689824}
+  - {fileID: 7606030418572532754}
+  - {fileID: 7606030418755255981}
+  - {fileID: 7606030418949745615}
+  - {fileID: 7606030419295252821}
+  - {fileID: 7606030420682392192}
+  - {fileID: 7606030420071992556}
+  - {fileID: 7606030418574066142}
 --- !u!1 &1833592166
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,7 +625,7 @@ GameObject:
   - component: {fileID: 7606030418572532754}
   - component: {fileID: 7606030418572532755}
   m_Layer: 5
-  m_Name: PianoKey C
+  m_Name: PianoKey C_high
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -711,8 +726,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 7
-  sound: {fileID: 8300000, guid: e7e0ad02c1dd60947b01ed51d772ebf8, type: 3}
-  piano: {fileID: 0}
+  baileySound: {fileID: 0}
+  famiSound: {fileID: 0}
+  useFami: 0
+  piano: {fileID: 1521682045}
   audio_src: {fileID: 7606030418572532755}
   keyMapping: 107
 --- !u!82 &7606030418572532755
@@ -854,7 +871,7 @@ GameObject:
   - component: {fileID: 7606030418574066142}
   - component: {fileID: 7606030418574066143}
   m_Layer: 5
-  m_Name: PianoKey C#
+  m_Name: PianoKey C#_high
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -983,8 +1000,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13
-  sound: {fileID: 8300000, guid: ec98a1b1e13db4c4ca9833b25680cc32, type: 3}
-  piano: {fileID: 0}
+  baileySound: {fileID: 0}
+  famiSound: {fileID: 0}
+  useFami: 0
+  piano: {fileID: 1521682045}
   audio_src: {fileID: 7606030418574066143}
   keyMapping: 111
 --- !u!82 &7606030418574066143
@@ -1293,8 +1312,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 8
-  sound: {fileID: 8300000, guid: 06c58c3a1e839af4cb1e004266bf9cc1, type: 3}
-  piano: {fileID: 0}
+  baileySound: {fileID: 0}
+  famiSound: {fileID: 0}
+  useFami: 0
+  piano: {fileID: 1521682045}
   audio_src: {fileID: 7606030418755255980}
   keyMapping: 119
 --- !u!222 &7606030418755255982
@@ -1672,8 +1693,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 9
-  sound: {fileID: 8300000, guid: 247e402d7f1d1a1448c04dd9cd6dd973, type: 3}
-  piano: {fileID: 0}
+  baileySound: {fileID: 0}
+  famiSound: {fileID: 0}
+  useFami: 0
+  piano: {fileID: 1521682045}
   audio_src: {fileID: 7606030418949745614}
   keyMapping: 101
 --- !u!224 &7606030418949745618
@@ -1990,8 +2013,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  sound: {fileID: 8300000, guid: 381c47e8d7da6cc4ca7cd56f84d6e848, type: 3}
-  piano: {fileID: 0}
+  baileySound: {fileID: 8300000, guid: 9c241cac0a9c9d647a51798633c3b524, type: 3}
+  famiSound: {fileID: 8300000, guid: 381c47e8d7da6cc4ca7cd56f84d6e848, type: 3}
+  useFami: 0
+  piano: {fileID: 1521682045}
   audio_src: {fileID: 7606030419123747185}
   keyMapping: 97
 --- !u!82 &7606030419123747185
@@ -2004,7 +2029,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 381c47e8d7da6cc4ca7cd56f84d6e848, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9c241cac0a9c9d647a51798633c3b524, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2324,8 +2349,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 2
-  sound: {fileID: 8300000, guid: d9287d7832930e940ae75e588c37f30a, type: 3}
-  piano: {fileID: 0}
+  baileySound: {fileID: 8300000, guid: 20a40926ee6651c4487a304b49a3d1e7, type: 3}
+  famiSound: {fileID: 8300000, guid: d9287d7832930e940ae75e588c37f30a, type: 3}
+  useFami: 0
+  piano: {fileID: 1521682045}
   audio_src: {fileID: 7606030419238721911}
   keyMapping: 100
 --- !u!82 &7606030419238721911
@@ -2338,7 +2365,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d9287d7832930e940ae75e588c37f30a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 20a40926ee6651c4487a304b49a3d1e7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2675,8 +2702,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 10
-  sound: {fileID: 8300000, guid: bc46eab1e601734409e9d929da4790a2, type: 3}
-  piano: {fileID: 0}
+  baileySound: {fileID: 0}
+  famiSound: {fileID: 0}
+  useFami: 0
+  piano: {fileID: 1521682045}
   audio_src: {fileID: 7606030419295252820}
   keyMapping: 116
 --- !u!222 &7606030419295252822
@@ -2754,8 +2783,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 6
-  sound: {fileID: 8300000, guid: 264d68faeb4172d4c9d56eb72b5689a5, type: 3}
-  piano: {fileID: 0}
+  baileySound: {fileID: 0}
+  famiSound: {fileID: 0}
+  useFami: 0
+  piano: {fileID: 1521682045}
   audio_src: {fileID: 7606030419308689825}
   keyMapping: 106
 --- !u!82 &7606030419308689825
@@ -3156,8 +3187,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 5
-  sound: {fileID: 8300000, guid: 7918ab37913a53b43b9aedb4ee19a414, type: 3}
-  piano: {fileID: 0}
+  baileySound: {fileID: 0}
+  famiSound: {fileID: 0}
+  useFami: 0
+  piano: {fileID: 1521682045}
   audio_src: {fileID: 7606030419350703370}
   keyMapping: 104
 --- !u!114 &7606030419350703373
@@ -3776,8 +3809,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 4
-  sound: {fileID: 8300000, guid: 871edfa571b23ab47bae733d3b04020b, type: 3}
-  piano: {fileID: 0}
+  baileySound: {fileID: 0}
+  famiSound: {fileID: 0}
+  useFami: 0
+  piano: {fileID: 1521682045}
   audio_src: {fileID: 7606030419944095136}
   keyMapping: 103
 --- !u!222 &7606030419944095138
@@ -3952,8 +3987,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 12
-  sound: {fileID: 8300000, guid: dc30fb4bd3597ed4983ca5b13831d5b1, type: 3}
-  piano: {fileID: 0}
+  baileySound: {fileID: 0}
+  famiSound: {fileID: 0}
+  useFami: 0
+  piano: {fileID: 1521682045}
   audio_src: {fileID: 7606030420071992557}
   keyMapping: 117
 --- !u!82 &7606030420071992557
@@ -4417,8 +4454,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 3
-  sound: {fileID: 8300000, guid: 5104ca5e91cbae74da9096bb0843c57d, type: 3}
-  piano: {fileID: 0}
+  baileySound: {fileID: 8300000, guid: be995e510b3071b41b0691be075c140f, type: 3}
+  famiSound: {fileID: 0}
+  useFami: 0
+  piano: {fileID: 1521682045}
   audio_src: {fileID: 7606030420446592827}
   keyMapping: 102
 --- !u!82 &7606030420446592827
@@ -4689,8 +4728,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 1
-  sound: {fileID: 8300000, guid: a7d14b15225b15849923647f4982857a, type: 3}
-  piano: {fileID: 0}
+  baileySound: {fileID: 8300000, guid: 4ff27d6b6dc8d1c4f935d1d94aa2ebc2, type: 3}
+  famiSound: {fileID: 8300000, guid: a7d14b15225b15849923647f4982857a, type: 3}
+  useFami: 0
+  piano: {fileID: 1521682045}
   audio_src: {fileID: 7606030420544485559}
   keyMapping: 115
 --- !u!82 &7606030420544485559
@@ -4703,7 +4744,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a7d14b15225b15849923647f4982857a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4ff27d6b6dc8d1c4f935d1d94aa2ebc2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -4802,8 +4843,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 11
-  sound: {fileID: 8300000, guid: 14b0b26f8600afb428a2f433cfadfc5f, type: 3}
-  piano: {fileID: 0}
+  baileySound: {fileID: 0}
+  famiSound: {fileID: 0}
+  useFami: 0
+  piano: {fileID: 1521682045}
   audio_src: {fileID: 7606030420682392193}
   keyMapping: 121
 --- !u!82 &7606030420682392193

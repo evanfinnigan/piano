@@ -7,7 +7,11 @@ using UnityEditor;
 public class PianoKey : MonoBehaviour
 {
     public int id;
-    public AudioClip sound;
+    public AudioClip baileySound;
+    public AudioClip famiSound;
+
+    public bool useFami = false;
+
     public Piano piano;
 
     public AudioSource audio_src;
@@ -20,7 +24,12 @@ public class PianoKey : MonoBehaviour
     void Start()
     {
         audio_src = GetComponent<AudioSource>();
-        audio_src.clip = sound;
+        if (useFami) {
+            audio_src.clip = famiSound;
+        } else {
+            audio_src.clip = baileySound;
+        }
+        
 
         btn = GetComponent<Button>();
         img = GetComponentInChildren<Image>();
@@ -37,6 +46,15 @@ public class PianoKey : MonoBehaviour
             Debug.Log("KeyUp: " + keyMapping);
             img.color = Color.white;
         }
+
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            useFami = !useFami;
+            if (useFami) {
+                audio_src.clip = famiSound;
+            } else {
+                audio_src.clip = baileySound;
+            }
+        }
     }
 
 
@@ -52,7 +70,11 @@ public class PianoKey : MonoBehaviour
 #if UNITY_EDITOR
     public void Initialize() {
         audio_src = GetComponent<AudioSource>();
-        audio_src.clip = sound;
+        if (useFami) {
+            audio_src.clip = famiSound;
+        } else {
+            audio_src.clip = baileySound;
+        }
     }
 #endif
 }

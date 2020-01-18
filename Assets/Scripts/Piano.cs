@@ -174,6 +174,7 @@ public class Piano : MonoBehaviour
     public void setKeyIds() {
         for (int i = 0; i < keys.Length; i++) {
             keys[i].id = i;
+            keys[i].piano = this;
         }
     }
 
@@ -214,6 +215,14 @@ public class Piano : MonoBehaviour
         return c;
     }
 
+    public void LoadAudioClips() {
+        for (int i = 0; i < keys.Length; i++) {
+            string fileName = keys[i].gameObject.name.Substring(9);
+            keys[i].baileySound = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/bailey/" + fileName + ".mp3");
+            keys[i].famiSound = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/famitracker/" + fileName + ".wav");
+        }
+    }
+
 #endif
 
 }
@@ -237,6 +246,9 @@ public class PianoEditor : UnityEditor.Editor {
         }
         if (GUILayout.Button("Reset Key Positions", EditorStyles.miniButton)) {
             ((Piano)this.target).resetKeyPositions();
+        }
+        if (GUILayout.Button("Load Audio", EditorStyles.miniButton)) {
+            ((Piano)this.target).LoadAudioClips();
         }
         DrawDefaultInspector();
     }
