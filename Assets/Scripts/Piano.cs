@@ -8,6 +8,10 @@ public class Piano : MonoBehaviour
 {
     public PianoKey[] keys;
 
+    void Start() {
+        resetKeyPositions();
+    }
+
     // Map
     /*
     0   c
