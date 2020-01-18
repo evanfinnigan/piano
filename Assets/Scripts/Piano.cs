@@ -7,9 +7,28 @@ using UnityEditor;
 public class Piano : MonoBehaviour
 {
     public PianoKey[] keys;
+    public PianoKey[] currentKeyOrder;
+
+    static KeyCode[] keyMappingLookup = new KeyCode[]{
+        KeyCode.A,
+        KeyCode.S,
+        KeyCode.D,
+        KeyCode.F,
+        KeyCode.G,
+        KeyCode.H,
+        KeyCode.J,
+        KeyCode.K,
+        KeyCode.W,
+        KeyCode.E,
+        KeyCode.T,
+        KeyCode.Y,
+        KeyCode.U,
+        KeyCode.O
+    };
+
 
     void Start() {
-        resetKeyPositions();
+        shuffleKeyPositions();
     }
 
     // Map
@@ -41,9 +60,73 @@ public class Piano : MonoBehaviour
         3. Position keys based on sorted order
     */
     public void shuffleKeyPositions() {
+        List<(PianoKey, float)> whiteKeys = new List<(PianoKey,float)>();
+        List<(PianoKey, float)> blackKeys = new List<(PianoKey,float)>();
 
+        for (int i = 0; i < keys.Length; i++) {
+            (PianoKey, float) pair;
+            pair.Item1 = keys[i];
+            pair.Item2 = Random.Range(0f,1f);
+            if (i < 8){
+                whiteKeys.Add(pair);
+            } else {
+                blackKeys.Add(pair);
+            }
+            
+        }
+
+        whiteKeys.Sort(((PianoKey, float) first,(PianoKey, float) second) => {
+            return first.Item2 > second.Item2 ? 1 : -1;
+        });
+
+        blackKeys.Sort(((PianoKey, float) first,(PianoKey, float) second) => {
+            return first.Item2 > second.Item2 ? 1 : -1;
+        });
+
+        whiteKeys.AddRange(blackKeys);
+        setKeyPositions(whiteKeys.ToArray());
+        setKeySizes();
+        setKeyMappings();
     }
 
+    // Sets position of keys based on the list order
+    void setKeyPositions(PianoKey[] keyArray) {
+        for (int i = 0; i < keyArray.Length; i++) {
+            if (i < 8) {
+                setPosition(keyArray[i], i, true);
+            } else {
+                setPosition(keyArray[i], i-8, false);
+            } 
+        }
+        currentKeyOrder = keyArray;
+    }
+
+    void setKeyPositions((PianoKey, float)[] keyArray) {
+        PianoKey[] keyArr = new PianoKey[keyArray.Length];
+        for (int i = 0; i < keyArray.Length; i++) {
+            keyArr[i] = keyArray[i].Item1;
+        }
+        setKeyPositions(keyArr);
+    }
+
+    void setPosition(PianoKey k, int index, bool isWhite) {
+        Vector3 p = k.transform.localPosition;
+        if (isWhite) {
+            p.x = 4*index - 16;
+            p.y = 8;
+        } else {
+            p.y = 8;
+            if (index < 2) {
+                p.x = 4*index - 14;
+            } else if (index < 5) {
+                p.x = 4*index - 10;
+            } else {
+                p.x = 4*index - 6;
+            }
+        } 
+        p.z = 0;
+        k.transform.localPosition = p;
+    }
 
 
 
@@ -58,43 +141,39 @@ public class Piano : MonoBehaviour
           4*index - 30
     */
     public void resetKeyPositions() {
-        Vector3 p;
-        for (int i = 0; i < keys.Length; i++) {
-            p = keys[i].transform.localPosition;
-            if (i < 8) {
-                p.x = 4*i - 16;
-                p.y = 8;
-            } else {
-                p.y = 8;
-                if (i < 10) {
-                    p.x = 4*(i - 8) - 14;
-                } else if (i < 13) {
-                    p.x = 4*(i - 8) - 10;
-                } else {
-                    p.x = 4*(i - 8) - 6;
-                }
+        setKeyPositions(keys);
+        currentKeyOrder = keys;
+        setKeySizes();
+        setKeyMappings();
+    }
+
+    public void setKeySizes(){
+        for (int i = 0; i < currentKeyOrder.Length; i++) {
+            if (i == currentKeyOrder.Length - 1) {
+                ((RectTransform)currentKeyOrder[i].transform).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 2);
+                ((RectTransform)currentKeyOrder[i].transform).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 8);
+            } else if (i < 8) {
+                ((RectTransform)currentKeyOrder[i].transform).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 3);
+                ((RectTransform)currentKeyOrder[i].transform).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 15);
             } 
-            p.z = 0;
-            keys[i].transform.localPosition = p;
+            else {
+                ((RectTransform)currentKeyOrder[i].transform).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 3);
+                ((RectTransform)currentKeyOrder[i].transform).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 8);
+            }
         }
     }
+
+    public void setKeyMappings() {
+        for (int i = 0; i < currentKeyOrder.Length; i++) {
+            currentKeyOrder[i].keyMapping = keyMappingLookup[i];
+        }
+    }
+
 
 #if UNITY_EDITOR
     public void setKeyIds() {
         for (int i = 0; i < keys.Length; i++) {
             keys[i].id = i;
-        }
-    }
-
-    public void setKeySizes(){
-        for (int i = 0; i < keys.Length; i++) {
-            if (i < 8) {
-                ((RectTransform)keys[i].transform).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 3);
-                ((RectTransform)keys[i].transform).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 15);
-            } else {
-                ((RectTransform)keys[i].transform).SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 3);
-                ((RectTransform)keys[i].transform).SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 8);
-            }
         }
     }
 
